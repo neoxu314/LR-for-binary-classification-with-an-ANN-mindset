@@ -6,13 +6,11 @@ import glob
 from sklearn.model_selection import train_test_split
 
 
-map_characters = {0: 'tree_1', 1: 'tree_2'}
+map_characters = {0: 'cats', 1: 'dogs'}
 
 pic_size = 64
-batch_size = 32
-epochs = 200
 num_classes = len(map_characters)
-pictures_per_class = 1000
+pictures_per_class = 12500
 test_size = 0.15
 
 
@@ -38,13 +36,15 @@ def load_pictures(BGR):
         # k for k in x (List Comprehensions): https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
         # picture is a array of the picture names in target folder
         # pictures = [k for k in glob.glob('./characters/%s/*' % char)]
-        pictures = [k for k in glob.glob('./frames/%s/*' % char)]
+        pictures = [k for k in glob.glob('./train_sets/%s/*' % char)]
+        # print(len(pictures))
         # print(pictures)
 
         # nb_pic: the number of the pictures array
         # https://stackoverflow.com/questions/2529536/python-idiom-for-if-else-expression
         nb_pic = round(pictures_per_class/(1-test_size)) if round(pictures_per_class/(1-test_size))<len(pictures) else len(pictures)
         nb_pic_int = int(nb_pic)
+        print("nb_pic_int", nb_pic_int)
         # nb_pic = len(pictures)
         # print(nb_pic)
 
@@ -136,3 +136,4 @@ def get_dataset(save=False, load=False, BGR=False):
     print("Test", X_test.shape, y_test.shape)
 
     return X_train, X_test, y_train, y_test
+
