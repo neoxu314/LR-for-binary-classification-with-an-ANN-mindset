@@ -218,5 +218,5 @@ def model(X_train, X_test, Y_train, Y_test, lr, iterations):
 
 # Testing models
 X_train, X_test, Y_train, Y_test = dp.get_dataset()
-d = model(X_train, X_test, Y_train, Y_test, 0.005, 1000)
+d = model(X_train, X_test, Y_train, Y_test, 0.005, 10000)
 
